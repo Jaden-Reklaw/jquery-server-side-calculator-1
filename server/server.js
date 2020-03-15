@@ -33,8 +33,8 @@ app.get('/input', (req, res) => {
 //Adds to the RESTFUL API to /input once user inputs data then press = on index.html
 app.post('/input',(request,response) => {
 	console.log('Recieve expression on server', request.body);
-	request.body.answer = calculator(request.body);
-	historyOfExpressions.push(request.body);
+	let obj = calculator(request.body);
+	historyOfExpressions.push(obj);
 	response.json({
 		status: 'success',
 	});

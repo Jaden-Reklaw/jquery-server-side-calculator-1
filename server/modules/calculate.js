@@ -1,24 +1,27 @@
 let calculateExpression = (expression) => {
-	let answer;
 	let num1 = Number(expression.number1);
 	let num2 = Number(expression.number2);
 	switch(expression.operator) {
 		case 'add-btn':
-			answer = num1 + num2;
+			expression.answer = num1 + num2;
+			expression.operator = '+';
 			break;
 		case 'subtract-btn':
-			answer = num1 - num2;
+			expression.answer = num1 - num2;
+			expression.operator = '-';
 			break;
 		case 'multiply-btn':
-			answer = num1 * num2;
+			expression.answer = num1 * num2;
+			expression.operator = '*';
 			break;
 		case 'divide-btn':
-			answer = num1 / num2;
+			expression.answer = num1 / num2;
+			expression.operator = '/';
 			break;
 		default:
 		console.log('Something went wrong!');
 	}
-	return answer;
+	return expression;
 }
 
 export default calculateExpression;

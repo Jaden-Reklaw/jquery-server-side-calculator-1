@@ -1,11 +1,11 @@
-console.log('client.js');
 //Global Variables
 let operator;
 
+//Initialize the DOM to ready for jquery
 $(document).ready(onReady);
 
+//Function that runs once the DOM is ready
 function onReady() {
-	console.log('jquery running!');
 	//Connect operator buttons
 	$('#add-btn, #subtract-btn, #multiply-btn, #divide-btn').on('click', selectedOperator);
 	$('#equal-btn').on('click', sendExpressionToServer);
@@ -37,6 +37,9 @@ function sendExpressionToServer() {
 	}).catch(error => {
   		console.log('Error:', error);
 	});
+
+	//After inputs are post get them from the server
+	receiveExpressionToServer();
 }
 
 //This works to fetch history of inputs from the server
@@ -44,10 +47,27 @@ function receiveExpressionToServer() {
 	fetch('/input').then((response) => {
 		return response.json();
 	}).then((data) => {
-		console.log(data);
+		console.log('data',data);
+		//Render to DOM
+		renderAnswerToDOM(data);
+		renderHistoryToDOM(data);
 	}).catch((error) => {
 		console.log('Error:', error);
 	});
+}
+
+//Render Answer to the DOM
+function renderAnswerToDOM(arrayOfObject) {
+	$(`#answer`).empty();
+	$(`#answer`).append(arrayOfObject[arrayOfObject.length -1].answer);
+}
+
+//Render history of past answers to the DOM
+function renderHistoryToDOM(arrayOfObject) {
+		$(`#history-output`).empty();
+	for(let expression of arrayOfObject) {
+		$(`#history-output`).append(`<li>${expression.number1} ${expression.operator} ${expression.number2} = ${expression.answer}</li>`);
+	}
 }
 
 
