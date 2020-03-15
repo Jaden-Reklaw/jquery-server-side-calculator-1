@@ -32,9 +32,9 @@ function sendExpressionToServer() {
 	};
 
 	//Using fetch api to send information to the server
-	fetch('/input', options).then((response) => response.json()).then((data) => {
-  		console.log('Success:', data);
-	}).catch((error) => {
+	fetch('/input', options).then(response => {
+		console.log(response);
+	}).catch(error => {
   		console.log('Error:', error);
 	});
 }
