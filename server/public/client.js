@@ -17,14 +17,38 @@ function selectedOperator(event) {
 }
 
 function sendExpressionToServer() {
-	console.log('in sendExpressionToServer');
+	//Capture user inputs then create an object to past to the server
 	let number1 = $(`#first-number`).val();
 	let number2 = $(`#second-number`).val();
-	console.log(`Number 1: ${number1} Number 2: ${number2}`);
 	let expression = {number1, number2, operator};
-	console.log('expression is', expression)
+	
+	//Options for using POST method to send to the server
+	const options = {
+		method: 'POST',
+		headers: {
+    		'Content-Type': 'application/json'
+  		},
+		body: JSON.stringify(expression)
+	};
+
+	//Using fetch api to send information to the server
+	fetch('/input', options).then((response) => response.json()).then((data) => {
+  		console.log('Success:', data);
+	}).catch((error) => {
+  		console.log('Error:', error);
+	});
 }
 
+//This works to fetch history of inputs from the server
+function receiveExpressionToServer() {
+	fetch('/input').then((response) => {
+		return response.json();
+	}).then((data) => {
+		console.log(data);
+	}).catch((error) => {
+		console.log('Error:', error);
+	});
+}
 
 
 
