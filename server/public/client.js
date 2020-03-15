@@ -9,6 +9,7 @@ function onReady() {
 	//Connect operator buttons
 	$('#add-btn, #subtract-btn, #multiply-btn, #divide-btn').on('click', selectedOperator);
 	$('#equal-btn').on('click', sendExpressionToServer);
+	$('#clear-btn').on('click', clearInputs);
 }
 
 //Function to see which operator was selected.
@@ -68,6 +69,12 @@ function renderHistoryToDOM(arrayOfObject) {
 	for(let expression of arrayOfObject) {
 		$(`#history-output`).append(`<li>${expression.number1} ${expression.operator} ${expression.number2} = ${expression.answer}</li>`);
 	}
+}
+
+//Function for event listener to clear input values once clear button is pushed
+function clearInputs() {
+	$(`#first-number`).val('');
+	$(`#second-number`).val('');
 }
 
 
