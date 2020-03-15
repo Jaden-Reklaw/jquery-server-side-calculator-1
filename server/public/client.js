@@ -14,6 +14,7 @@ function onReady() {
 
 //Function to see which operator was selected.
 function selectedOperator(event) {
+	console.log(event.target.id);
 	operator = event.target.id;
 }
 
@@ -34,7 +35,7 @@ function sendExpressionToServer() {
 
 	//Using fetch api to send information to the server
 	fetch('/input', options).then(response => {
-		console.log(response);
+		console.log('sending expression to server',response);
 	}).catch(error => {
   		console.log('Error:', error);
 	});
