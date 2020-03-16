@@ -1,11 +1,13 @@
 //Global Variable
 let historyOfExpressions = [];
+let stretchHistory = [];
 
 //Allow express in the project to create a server
 import express from 'express';
 
 //Add module to calculate user inputs
-import calculator from './modules/calculate'
+import calculator from './modules/calculate';
+import evaluateExpression from './modules/mathParser';
 
 //Run funciton an returns the web server it created
 const app = express();
@@ -38,6 +40,21 @@ app.post('/input',(request,response) => {
 	response.json({
 		status: 'success',
 	});
+});
+
+//Stretch Calculator
+app.post('/equation',(request,response) => {
+	console.log('Recieve stretch expression on server', request.body);
+	let obj = evaluateExpression(request.body);
+	stretchHistory.push(request.body);
+	response.json({
+		status: 'success',
+	});
+});
+
+app.get('/equation', (req, res) => {
+	console.log('Sending some stretchHistory array');
+	res.send(stretchHistory);
 });
 
 

@@ -20,16 +20,31 @@ section {
 	margin: 8px 0;
 	font-size: 15px;
 	grid-column: 1/5;
+	border: 1px solid black;
+	text-align: left;
 }
 
 button {
-	background-color: #4CAF50; /* Green */
+	background: green;
 	border: none;
 	color: white;
 	padding: 10px;
 	text-align: center;
 	text-decoration: none;
 	font-size: 16px;
+}
+
+/*Button Colors*/
+.grey {
+	background: #A9A9A9;
+}
+
+.light-grey {
+	background: #696969;
+}
+
+.blue {
+	background: #00CED1;
 }
 
 
