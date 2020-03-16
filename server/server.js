@@ -42,19 +42,9 @@ app.post('/input',(request,response) => {
 	});
 });
 
-//Stretch Calculator
-app.post('/equation',(request,response) => {
-	console.log('Recieve stretch expression on server', request.body);
-	let obj = evaluateExpression(request.body);
-	stretchHistory.push(request.body);
-	response.json({
-		status: 'success',
-	});
-});
-
-app.get('/equation', (req, res) => {
-	console.log('Sending some stretchHistory array');
-	res.send(stretchHistory);
+app.get('/stretch', (req, res) => {
+	console.log('Loading new page');
+	res.sendStatus(200);
 });
 
 
