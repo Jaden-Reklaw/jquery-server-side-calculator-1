@@ -27,9 +27,9 @@ app.use(express.static('server/public'));
 app.use(express.json({limit: '1mb'}));
 
 //Creates a RESTFUL API to /input for the user to retrieve data
-app.get('/input', (req, res) => {
+app.get('/input', (request, response) => {
 	console.log('Sending some inputs');
-	res.send(historyOfExpressions);
+	response.send(historyOfExpressions);
 });
 
 //Adds to the RESTFUL API to /input once user inputs data then press = on index.html
@@ -42,9 +42,20 @@ app.post('/input',(request,response) => {
 	});
 });
 
-app.get('/stretch', (req, res) => {
-	console.log('Loading new page');
-	res.sendStatus(200);
+//Stretch Calculator
+app.post('/calculations',(request,response) => {
+	console.log('Recieve stretch expression on server', request.body);
+	stretchHistory.push(request.body);
+	let obj = evaluateExpression(request.body);
+	
+	response.json({
+		status: 'success',
+	});
+});
+
+app.get('/calculations', (request, response) => {
+	console.log('Sending some stretchHistory array');
+	response.send(stretchHistory);
 });
 
 
