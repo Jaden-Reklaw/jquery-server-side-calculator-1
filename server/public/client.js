@@ -17,15 +17,27 @@ function onReady() {
 	$('.num-btn').on('click', insertNumbers);
 	$('.operator-btn').on('click', addOperators);
 	$('#equal').on('click', sendEquationToServer);
-	$('#clear').on('click', clearField);
+	$('#clear').on('click', clearButton);
+	$('#percentage').on('click', percentageButton);
 }
 
 //vvvv STRETCH-MODE vvvv
 
-function clearField() {
+function percentageButton() {
+	console.log('percentageButton');
+	//Change stringNumber
+	stringNumber = stringNumber * 0.01;
+	//Empty out id appending-number then append to DOM
+	$('#appending-number').empty();
+	$('#appending-number').append(stringNumber);
+
+}
+
+function clearButton() {
 	//Empty out id current and appending-number
 	$('#appending-number').empty();
 	$('#current').empty();
+	stringNumber = '';
 }
 
 //Funciton to get the current answer
@@ -78,10 +90,6 @@ function sendEquationToServer() {
 	//Send last stringNumber to the array
 	expressionArray.push(stringNumber);
 	stringNumber = '';
-
-	//Empty out id current and appending-number
-	//$('#appending-number').empty();
-	//$('#current').empty();
 
 	//Send expressionArray to server with POST method
 	const options = {
