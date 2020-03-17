@@ -2,7 +2,6 @@
 let operator;
 let expressionArray = [];
 let stringNumber = '';
-let counter = 0;
 
 //Initialize the DOM to ready for jquery
 $(document).ready(onReady);
@@ -18,17 +17,25 @@ function onReady() {
 	$('.num-btn').on('click', insertNumbers);
 	$('.operator-btn').on('click', addOperators);
 	$('#equal').on('click', sendEquationToServer);
+	$('#clear').on('click', clearField);
 }
 
 //vvvv STRETCH-MODE vvvv
 
+function clearField() {
+	//Empty out id current and appending-number
+	$('#appending-number').empty();
+	$('#current').empty();
+}
+
+//Funciton to get the current answer
 function renderStretchAnswerToDOM(arrayOfArrays) {
 	//Select the last item of an array which is an array
 	let array = arrayOfArrays[arrayOfArrays.length -1];
-	console.log('last array is', array);
+
 	//Then select that last item which is an object 
 	let answer = array[array.length -1].answer;
-	console.log('answer is', answer);
+
 	//Empty then Render to DOM under ID ans
 	$('#ans').empty();
 	$('#ans').append(` ${answer}`);
@@ -52,7 +59,7 @@ function renderStretchHistoryToDOM(arrayOfArrays) {
 	}// end outer loop
 } // end renderStretchHistoryToDOM
 
-//
+//Function to get information from the server
 function receiveEquationsFromServer() {
 	fetch('/calculations').then((response) => {
 		return response.json();
@@ -73,8 +80,8 @@ function sendEquationToServer() {
 	stringNumber = '';
 
 	//Empty out id current and appending-number
-	$('#appending-number').empty();
-	$('#current').empty();
+	//$('#appending-number').empty();
+	//$('#current').empty();
 
 	//Send expressionArray to server with POST method
 	const options = {
