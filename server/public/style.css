@@ -1,6 +1,18 @@
 /*Styling for Base Mode*/
+#based-mode {
+	text-align: center;
+  	border: 3px solid green;
+}
 
+ul {
+	list-style-type: none;
+ 	margin: 0;
+ 	padding: 0;
+}
 
+li {
+	padding: 5px;
+}
 /*Styling for Stretch Mode*/
 section {
 	text-align: center;

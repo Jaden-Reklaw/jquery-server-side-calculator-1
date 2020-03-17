@@ -20,8 +20,21 @@ function onReady() {
 	$('#equal').on('click', sendEquationToServer);
 }
 
-function renderEquationToDOM() {
-	
+function renderEquationToDOM(arrayOfArrays) {
+	$('#stretch-history').empty();
+	for(let array of arrayOfArrays) {
+		console.log('Array is:',array);
+		let stringExpression = '';
+		for (var i = 0; i < array.length; i++) {
+			if(typeof(array[i]) === 'object') {
+				stringExpression += `= ${array[i].answer}`;
+			}else {
+				stringExpression += `${array[i]} `;
+			}
+		}
+		console.log('stringExpression is',stringExpression);
+		$('#stretch-history').append(`<li>${stringExpression}</li>`)
+	}
 }
 
 //
@@ -31,6 +44,7 @@ function receiveEquationsFromServer() {
 	}).then((data) => {
 		console.log('Equations from server',data);
 		//Render to DOM
+		renderEquationToDOM(data);
 	}).catch((error) => {
 		console.log('Error:', error);
 	});
