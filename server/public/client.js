@@ -2,6 +2,7 @@
 let operator;
 let expressionArray = [];
 let stringNumber = '';
+let counter = 0;
 
 //Initialize the DOM to ready for jquery
 $(document).ready(onReady);
@@ -19,9 +20,27 @@ function onReady() {
 	$('#equal').on('click', sendEquationToServer);
 }
 
+function renderEquationToDOM() {
+	
+}
+
+//
+function receiveEquationsFromServer() {
+	fetch('/calculations').then((response) => {
+		return response.json();
+	}).then((data) => {
+		console.log('Equations from server',data);
+		//Render to DOM
+	}).catch((error) => {
+		console.log('Error:', error);
+	});
+}
+
+//When equal button is clicked it will send the data to the server
 function sendEquationToServer() {
 	//Send last stringNumber to the array
 	expressionArray.push(stringNumber);
+	stringNumber = '';
 
 	//Empty out id current and appending-number
 	$('#appending-number').empty();
@@ -39,6 +58,9 @@ function sendEquationToServer() {
 	//Using fetch api to send information to the server
 	fetch('/calculations', options).then(response => {
 		console.log('sending stretch expression to server',response);
+		//Empty expression array
+		expressionArray = [];
+		receiveEquationsFromServer();
 	}).catch(error => {
   		console.log('Error:', error);
 	});
