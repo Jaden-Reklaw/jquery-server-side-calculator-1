@@ -9,7 +9,7 @@ $(document).ready(onReady);
 
 //Function that runs once the DOM is ready
 function onReady() {
-	//Connect operator buttons
+	//Base Mode Buttons
 	$('#add-btn, #subtract-btn, #multiply-btn, #divide-btn').on('click', selectedOperator);
 	$('#equal-btn').on('click', sendExpressionToServer);
 	$('#clear-btn').on('click', clearInputs);
@@ -20,10 +20,26 @@ function onReady() {
 	$('#equal').on('click', sendEquationToServer);
 }
 
-function renderEquationToDOM(arrayOfArrays) {
+//vvvv STRETCH-MODE vvvv
+
+function renderStretchAnswerToDOM(arrayOfArrays) {
+	//Select the last item of an array which is an array
+	let array = arrayOfArrays[arrayOfArrays.length -1];
+	console.log('last array is', array);
+	//Then select that last item which is an object 
+	let answer = array[array.length -1].answer;
+	console.log('answer is', answer);
+	//Empty then Render to DOM under ID ans
+	$('#ans').empty();
+	$('#ans').append(` ${answer}`);
+}
+
+function renderStretchHistoryToDOM(arrayOfArrays) {
+	//Empty out the current history
 	$('#stretch-history').empty();
+
+	//Loop over each array and concatenate into a string expression to append to DOM
 	for(let array of arrayOfArrays) {
-		console.log('Array is:',array);
 		let stringExpression = '';
 		for (var i = 0; i < array.length; i++) {
 			if(typeof(array[i]) === 'object') {
@@ -31,11 +47,10 @@ function renderEquationToDOM(arrayOfArrays) {
 			}else {
 				stringExpression += `${array[i]} `;
 			}
-		}
-		console.log('stringExpression is',stringExpression);
+		}//end inner loop
 		$('#stretch-history').append(`<li>${stringExpression}</li>`)
-	}
-}
+	}// end outer loop
+} // end renderStretchHistoryToDOM
 
 //
 function receiveEquationsFromServer() {
@@ -43,8 +58,9 @@ function receiveEquationsFromServer() {
 		return response.json();
 	}).then((data) => {
 		console.log('Equations from server',data);
-		//Render to DOM
-		renderEquationToDOM(data);
+		//Render history and answer to DOM
+		renderStretchHistoryToDOM(data);
+		renderStretchAnswerToDOM(data);
 	}).catch((error) => {
 		console.log('Error:', error);
 	});
@@ -113,7 +129,8 @@ function insertNumbers(event) {
 	$('#appending-number').append(stringNumber);
 }
 
-//Based Mode
+//vvvv BASE-MODE vvvv
+
 //Function to see which operator was selected.
 function selectedOperator(event) {
 	console.log(event.target.id);
