@@ -48,7 +48,6 @@ function sendEquationToServer() {
 //array called expressionArray
 function addOperators(event) {
 	let operand = event.target.value;
-	console.log('operand', operand);
 
 	//Push numbers and operands to the array
 	expressionArray.push(stringNumber);
@@ -72,7 +71,6 @@ function addOperators(event) {
 function insertNumbers(event) {
 	//Concatenate the numbers
 	stringNumber += event.target.value;
-	console.log('string number is:',stringNumber);
 
 	//Empty out id appending-number then append to DOM
 	$('#appending-number').empty();
