@@ -19,10 +19,22 @@ function onReady() {
 	$('#equal').on('click', sendEquationToServer);
 	$('#clear').on('click', clearButton);
 	$('#percentage').on('click', percentageButton);
+	$('#negative').on('click', turnNegative);
 }
 
 //vvvv STRETCH-MODE vvvv
 
+//Function to change the appending-number to -
+function turnNegative() {
+	console.log('turnNegative');
+	stringNumber = '-' + stringNumber;
+
+	//Empty out id appending-number then append to DOM
+	$('#appending-number').empty();
+	$('#appending-number').append(stringNumber);
+}
+
+//Function to change the appending-number into a percentage
 function percentageButton() {
 	console.log('percentageButton');
 	//Change stringNumber
@@ -30,7 +42,6 @@ function percentageButton() {
 	//Empty out id appending-number then append to DOM
 	$('#appending-number').empty();
 	$('#appending-number').append(stringNumber);
-
 }
 
 function clearButton() {
