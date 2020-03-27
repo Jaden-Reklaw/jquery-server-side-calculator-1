@@ -13,7 +13,8 @@ import evaluateExpression from './modules/mathParser';
 const app = express();
 
 //Good port to use
-const port = 5000;
+const PORT = process.env.PORT || 5000;
+
 //Checking if server is listening on a certain port when running
 app.listen( port, () => {
 	console.log( 'listening on port', port);
