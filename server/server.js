@@ -16,8 +16,8 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 //Checking if server is listening on a certain port when running
-app.listen( port, () => {
-	console.log( 'listening on port', port);
+app.listen( PORT, () => {
+	console.log( 'listening on port', PORT);
 });
 
 //Tells the server to allow the public to see these things
