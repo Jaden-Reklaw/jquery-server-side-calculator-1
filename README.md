@@ -14,7 +14,7 @@ To see the fully functional website, please visit: [DEPLOYED VERSION OF APP](htt
 
 ## Screen Shot
 
-Include one or two screen shots of your project here (optional). Remove if unused.
+![ Sample_Page ](https://github.com/Jaden-Reklaw/jquery-server-side-calculator/blob/master/Wireframes/BM-Server-Side-Cal.png "Example Feedback Page")
 
 ### Prerequisites
 - [Node.js](https://nodejs.org/en/)
