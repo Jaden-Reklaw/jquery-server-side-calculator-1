@@ -13,8 +13,10 @@ The stretch calculator looks and acts like a basic calculator that you have on y
 To see the fully functional website, please visit: [DEPLOYED VERSION OF APP](https://peaceful-escarpment-98606.herokuapp.com/)
 
 ## Screen Shot
-
-![ Sample_Page ](https://github.com/Jaden-Reklaw/jquery-server-side-calculator/blob/master/Wireframes/BM-Server-Side-Cal.png "Example Feedback Page")
+Example Base Mode Server Side Calculator
+![ Home_Page ](https://github.com/Jaden-Reklaw/jquery-server-side-calculator/blob/master/Wireframes/BM-Server-Side-Cal.png "Example Base Mode Server Side Calculator")
+Example Stretch Mode Server Side Calculator
+![ Stretch_Mode_Page ](https://github.com/Jaden-Reklaw/jquery-server-side-calculator/blob/master/Wireframes/SM-Server-Side-Cal.png "Example Stretch Mode Server Side Calculator")
 
 ### Prerequisites
 - [Node.js](https://nodejs.org/en/)
