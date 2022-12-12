@@ -20,6 +20,6 @@
   "homepage": "https://github.com/Jaden-Reklaw/jquery-server-side-calculator#readme",
   "dependencies": {
     "esm": "^3.2.25",
-    "express": "^4.17.1"
+    "express": "^4.17.3"
   }
 }
